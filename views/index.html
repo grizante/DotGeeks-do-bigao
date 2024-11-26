@@ -3,36 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Educacional</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>DotGeeks</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Cabeçalho -->
+    
+    <div class="language-toggle">
+        <button id="language-btn">🇧🇷 PT</button>
+    </div>
+    <div class="theme-toggle">
+        <button id="theme-btn">☀️ Light</button>
+    </div>
+    
+    <div class="logo">
+        <img src="/public/img/D.png" alt="DotGeeks Logo">
+    </div>
+
     <header>
-        <div class="container">
-            <h1>Bem-vindo ao Site Educacional!</h1>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/courses.html">Cursos</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="#home" data-lang="navHome">Home</a></li>
+                <li><a href="/views/courses.html" data-lang="navCourses">Cursos</a></li>
+                <li><a href="#sobre" data-lang="navAbout">Sobre</a></li>
+                <li><a href="#contato" data-lang="navContact">Contato</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Conteúdo Principal -->
     <main>
-        <section>
-            <h2>Sobre Nós</h2>
-            <p>Aprenda com tutoriais, exercícios práticos e materiais de qualidade. Nosso objetivo é ajudar você a dominar as melhores práticas de tecnologia da informação.</p>
+        <section id="hero">
+            <h1 data-lang="heroTitle">Transforme seu Aprendizado Tech</h1>
+            <p data-lang="heroSubtitle">Explore. Aprenda. Domine.</p>
+            <div class="cta-buttons">
+                <a href="#cursos" class="btn primary" data-lang="ctaPrimaryCTA">Ver Cursos</a>
+                <a href="#sobre" class="btn secondary" data-lang="ctaSecondaryCTA">Saiba Mais</a>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="feature">
+                <h2 data-lang="featureCourses">Cursos Interativos</h2>
+                <p data-lang="featureDescription1">Aprenda programação de forma divertida e prática</p>
+            </div>
+            <div class="feature">
+                <h2 data-lang="featureTech">Tecnologias Modernas</h2>
+                <p data-lang="featureDescription2">Node.js, Express, MongoDB e muito mais</p>
+            </div>
+            <div class="feature">
+                <h2 data-lang="featureCommunity">Comunidade Geek</h2>
+                <p data-lang="featureDescription3">Conecte-se com outros desenvolvedores</p>
+            </div>
         </section>
     </main>
 
-    <!-- Rodapé -->
     <footer>
-        <div class="container">
-            <p>&copy; 2024 Site Educacional. Todos os direitos reservados.</p>
+        <div class="footer-content">
+            <p data-lang="footerRights">© 2024 DotGeeks. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="https://github.com/Larsenvini" target="_blank" aria-label="GitHub">
+                    <img src="/public/img/icons8-github.svg" alt="GitHub Logo" class="social-icon">
+                </a>
+                <a href="https://www.linkedin.com/in/vinilarsen" target="_blank" aria-label="LinkedIn">
+                    <img src="/public/img/icons8-linkedin.svg" alt="LinkedIn Logo" class="social-icon">
+                </a>
+                <a href="https://discord.gg/pMGNuQfM" target="_blank" aria-label="Discord">
+                    <img src="/public/img/icons8-discord-64.svg" alt="Discord Logo" class="social-icon">
+                </a>
+            </div>
         </div>
     </footer>
+
+    <script src="/public/js/main.js"></script>
 </body>
 </html>

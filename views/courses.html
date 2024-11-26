@@ -3,38 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursos - Site Educacional</title>
+    <title>Cursos - DotGeeks</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <!-- Cabeçalho -->
+    <!-- Language and Theme Toggles -->
+    <div class="language-toggle">
+        <button id="language-btn">🇧🇷 PT</button>
+    </div>
+    <div class="theme-toggle">
+        <button id="theme-btn">☀️ Light</button>
+    </div>
+    
+    <!-- Logo -->
+    <div class="logo">
+        <img src="/public/img/D.png" alt="DotGeeks Logo">
+    </div>
+
+    <!-- Header -->
     <header>
-        <div class="container">
-            <h1>Nossos Cursos</h1>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/courses.html">Cursos</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="/" data-lang="navHome">Home</a></li>
+                <li><a href="/views/courses.html" data-lang="navCourses">Cursos</a></li>
+                <li><a href="#sobre" data-lang="navAbout">Sobre</a></li>
+                <li><a href="#contato" data-lang="navContact">Contato</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Conteúdo Principal -->
+    <!-- Main Content -->
     <main>
         <section>
-            <h2>Lista de Cursos</h2>
+            <h2 data-lang="coursesTitle">Lista de Cursos</h2>
             <div id="courses-container">
-                <!-- Os cursos serão carregados dinamicamente via JavaScript -->
-                <p>Carregando cursos...</p>
+                <!-- Courses will be loaded dynamically -->
+                <p data-lang="loadingCourses">Carregando cursos...</p>
             </div>
         </section>
     </main>
 
-    <!-- Rodapé -->
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>&copy; 2024 Site Educacional. Todos os direitos reservados.</p>
+        <div class="footer-content">
+            <p data-lang="footerRights">© 2024 DotGeeks. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="https://github.com/Larsenvini" target="_blank" aria-label="GitHub">
+                    <img src="/public/img/icons8-github.svg" alt="GitHub Logo" class="social-icon">
+                </a>
+                <a href="https://www.linkedin.com/in/vinilarsen" target="_blank" aria-label="LinkedIn">
+                    <img src="/public/img/icons8-linkedin.svg" alt="LinkedIn Logo" class="social-icon">
+                </a>
+                <a href="https://discord.gg/pMGNuQfM" target="_blank" aria-label="Discord">
+                    <img src="/public/img/icons8-discord-64.svg" alt="Discord Logo" class="social-icon">
+                </a>
+            </div>
         </div>
     </footer>
 
