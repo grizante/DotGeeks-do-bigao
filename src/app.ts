@@ -2,36 +2,49 @@ import express from 'express';
 import path from 'path';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
 import courseRoutes from './routers/course';
 
-const app = express();
-const PORT = 3000;
+// Load environment variables
+dotenv.config();
 
-// Middleware para servir arquivos estáticos (CSS, JS)
+const app = express();
+const PORT = process.env.PORT || 3000; // Use environment variable or default to 3000
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/dotGeeksDB'; // Default MongoDB URI
+
+// Middleware to serve static files (CSS, JS, Images)
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Conexão com o MongoDB
-mongoose.connect('mongodb://localhost:27017/siteEducacional')
-    .then(() => console.log('Conectado ao MongoDB'))
-    .catch(err => console.error('Erro ao conectar ao MongoDB:', err));
+// Connect to MongoDB
+mongoose
+    .connect(MONGO_URI)
+    .then(() => console.log('Connected to MongoDB successfully'))
+    .catch(err => {
+        console.error('Failed to connect to MongoDB:', err);
+        process.exit(1); // Exit process if DB connection fails
+    });
 
-// Middleware para interpretar JSON
+// Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
-// Rota para a API de cursos
+// API routes
 app.use('/api/courses', courseRoutes);
 
-// Rota para a página inicial
+// Serve the main HTML files
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../views/index.html'));
 });
 
-// Rota para a página de cursos
 app.get('/courses.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../views/courses.html'));
 });
 
-// Iniciar o servidor
+// Catch-all route for undefined routes
+app.use((req, res) => {
+    res.status(404).send('Página não encontrada.');
+});
+
+// Start the server
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

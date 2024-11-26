@@ -1,19 +1,10 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose from 'mongoose';
 
-// Define o tipo do documento
-interface ICourse extends Document {
-    title: string;
-    description: string;
-    content: string;
-}
-
-// Define o esquema do curso
-const courseSchema = new Schema<ICourse>({
+const courseSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
     content: { type: String, required: true },
+    createdAt: { type: Date, default: Date.now }
 });
 
-// Exporta o modelo
-const Course = mongoose.model<ICourse>('Course', courseSchema);
-export { Course };
+export const Course = mongoose.model('Course', courseSchema);
