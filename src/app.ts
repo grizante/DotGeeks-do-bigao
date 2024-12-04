@@ -31,6 +31,7 @@ app.use('/api/courses', courseRoutes);
 
 // Serve the main HTML files
 app.get('/', (req, res) => {
+    console.log(req)
     res.sendFile(path.join(__dirname, '../views/index.html'));
 });
 
