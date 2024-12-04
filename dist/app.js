@@ -4,20 +4,41 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const path_1 = __importDefault(require("path"));
 const mongoose_1 = __importDefault(require("mongoose"));
-const body_parser_1 = __importDefault(require("body-parser"));
+const dotenv_1 = __importDefault(require("dotenv"));
 const course_1 = __importDefault(require("./routers/course"));
+// Load environment variables
+dotenv_1.default.config();
 const app = (0, express_1.default)();
-const PORT = 3000;
-// Middleware
-app.use(body_parser_1.default.json());
-app.use('/api/courses', course_1.default);
-// Conexão com MongoDB
-mongoose_1.default.connect('mongodb://localhost:27017/siteEducacional')
-    .then(() => console.log('Conectado ao MongoDB'))
-    .catch(err => console.error('Erro ao conectar ao MongoDB:', err));
-// Rota inicial
-app.get('/', (req, res) => {
-    res.send('Bem-vindo ao Site Educacional!');
+const PORT = process.env.PORT || 3000; // Use environment variable or default to 3000
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/dotGeeksDB'; // Default MongoDB URI
+// Middleware to serve static files (CSS, JS, Images)
+app.use(express_1.default.static(path_1.default.join(__dirname, '../public')));
+// Connect to MongoDB
+mongoose_1.default
+    .connect(MONGO_URI)
+    .then(() => console.log('Connected to MongoDB successfully'))
+    .catch(err => {
+    console.error('Failed to connect to MongoDB:', err);
+    process.exit(1); // Exit process if DB connection fails
 });
-app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+// Middleware to parse JSON bodies
+app.use(express_1.default.json());
+// API routes
+app.use('/api/courses', course_1.default);
+// Serve the main HTML files
+app.get('/', (req, res) => {
+    res.sendFile(path_1.default.join(__dirname, '../views/index.html'));
+});
+app.get('/courses.html', (req, res) => {
+    res.sendFile(path_1.default.join(__dirname, '../views/courses.html'));
+});
+// Catch-all route for undefined routes
+app.use((req, res) => {
+    res.status(404).send('Página não encontrada.');
+});
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
+});
