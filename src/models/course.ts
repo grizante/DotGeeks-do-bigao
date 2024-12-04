@@ -7,4 +7,4 @@ const courseSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now }
 });
 
-export const Course = mongoose.model('Course', courseSchema);
+export const Course = mongoose.model('Course', courseSchema); // Exportação nomeada

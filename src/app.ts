@@ -1,7 +1,6 @@
 import express from 'express';
 import path from 'path';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import courseRoutes from './routers/course';
 
@@ -25,7 +24,7 @@ mongoose
     });
 
 // Middleware to parse JSON bodies
-app.use(bodyParser.json());
+app.use(express.json());
 
 // API routes
 app.use('/api/courses', courseRoutes);
